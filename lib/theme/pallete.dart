@@ -11,6 +11,9 @@ class Pallete {
 
   // Themes
   static var darkModeAppTheme = ThemeData.dark().copyWith(
+    elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all<Color>(Colors.white))),
     scaffoldBackgroundColor: blackColor,
     cardColor: greyColor,
     appBarTheme: const AppBarTheme(
