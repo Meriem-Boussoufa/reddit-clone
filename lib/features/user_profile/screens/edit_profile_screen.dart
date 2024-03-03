@@ -3,12 +3,12 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:reddit_clone/theme/pallete.dart';
 import '../../../core/common/error_text.dart';
 import '../../../core/common/loader.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/utils.dart';
 import '../../../responsive/responsive.dart';
+import '../../../theme/pallete.dart';
 import '../../auth/controller/auth_controller.dart';
 import '../controller/user_profile_controller.dart';
 
@@ -90,10 +90,11 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final isLoading = ref.watch(userProfileControllerProvider);
+    final currentTheme = ref.watch(themeNotifierProvider);
 
     return ref.watch(getUserDataProvider(widget.uid)).when(
           data: (user) => Scaffold(
-            backgroundColor: Pallete.darkModeAppTheme.backgroundColor,
+            backgroundColor: currentTheme.backgroundColor,
             appBar: AppBar(
               title: const Text('Edit Profile'),
               centerTitle: false,
@@ -122,8 +123,8 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                     radius: const Radius.circular(10),
                                     dashPattern: const [10, 4],
                                     strokeCap: StrokeCap.round,
-                                    color: Pallete.darkModeAppTheme.textTheme
-                                        .bodyText2!.color!,
+                                    color: currentTheme
+                                        .textTheme.bodyText2!.color!,
                                     child: Container(
                                       width: double.infinity,
                                       height: 150,
