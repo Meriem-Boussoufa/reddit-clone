@@ -13,15 +13,16 @@ class CommunityListDrawer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Drawer(
       child: SafeArea(
-          child: Column(
-        children: [
-          ListTile(
-            title: const Text('Create a community'),
-            leading: const Icon(Icons.add),
-            onTap: () => navigateToCreateCommunity(context),
-          )
-        ],
-      )),
+        child: Column(
+          children: [
+            ListTile(
+              title: const Text('Create a community'),
+              leading: const Icon(Icons.add),
+              onTap: () => navigateToCreateCommunity(context),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

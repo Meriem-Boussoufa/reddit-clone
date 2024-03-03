@@ -17,10 +17,6 @@ class HomeScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Home'),
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () => displayDrawer(context),
-          icon: const Icon(Icons.menu),
-        ),
         actions: [
           IconButton(
               onPressed: () {},
