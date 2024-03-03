@@ -8,6 +8,10 @@ import '../theme/pallete.dart';
 class ProfileDrawer extends ConsumerWidget {
   const ProfileDrawer({super.key});
 
+  void logOut(WidgetRef ref) {
+    ref.read(authControllerProvider.notifier).logout();
+  }
+
   void navigateToUserProfile(BuildContext context, String uid) {
     Routemaster.of(context).push('/u/$uid');
   }
@@ -45,7 +49,7 @@ class ProfileDrawer extends ConsumerWidget {
                 Icons.logout,
                 color: Pallete.redColor,
               ),
-              onTap: () {},
+              onTap: () => logOut(ref),
             ),
             Switch.adaptive(
               value: true,
