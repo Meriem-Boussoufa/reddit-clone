@@ -6,6 +6,7 @@ import 'package:reddit_clone/core/common/error_text.dart';
 import 'package:routemaster/routemaster.dart';
 import '../../features/auth/controller/auth_controller.dart';
 import '../../features/community/controller/community_controller.dart';
+import '../../features/post/controller/add_post_controller.dart';
 import '../../models/post.dart';
 import '../../responsive/responsive.dart';
 import '../../theme/pallete.dart';
@@ -29,6 +30,10 @@ class PostCard extends ConsumerWidget {
 
   void navigateToComments(BuildContext context) {
     Routemaster.of(context).push('/post/${post.id}/comments');
+  }
+
+  void deletePost(WidgetRef ref, BuildContext context) async {
+    ref.read(postControllerProvider.notifier).deletePost(post, context);
   }
 
   @override
@@ -135,7 +140,7 @@ class PostCard extends ConsumerWidget {
                                 ),
                                 if (post.uid == user.uid)
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () => deletePost(ref, context),
                                     icon: Icon(
                                       Icons.delete,
                                       color: Pallete.redColor,
