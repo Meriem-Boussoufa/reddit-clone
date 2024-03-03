@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reddit_clone/delegates/search_community_delegate.dart';
 import 'package:reddit_clone/drawers/community_list_drawer.dart';
+import 'package:reddit_clone/drawers/profile_drawer.dart';
 import 'package:reddit_clone/features/auth/controller/auth_controller.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -27,14 +28,17 @@ class HomeScreen extends ConsumerWidget {
               icon: const Icon(
                 Icons.search,
               )),
-          IconButton(
-              onPressed: () {},
-              icon: CircleAvatar(
-                backgroundImage: NetworkImage(user.profilePic),
-              )),
+          Builder(builder: (context) {
+            return IconButton(
+                onPressed: () => displayDrawer(context),
+                icon: CircleAvatar(
+                  backgroundImage: NetworkImage(user.profilePic),
+                ));
+          }),
         ],
       ),
       drawer: const CommunityListDrawer(),
+      endDrawer: const ProfileDrawer(),
       body: Center(
         child: Text(user.karma.toString()),
       ),
