@@ -10,6 +10,7 @@ import 'features/community/screens/mod_tools_screen.dart';
 import 'features/home_screen.dart';
 import 'features/auth/screens/login_screen.dart';
 import 'features/post/screens/add_post_screen.dart';
+import 'features/post/screens/add_post_type_screen.dart';
 import 'features/user_profile/screens/edit_profile_screen.dart';
 import 'features/user_profile/screens/user_profile_screen.dart';
 
@@ -54,6 +55,11 @@ final loggedInRoute = RouteMap(
         ),
     '/add-post': (routeData) => const MaterialPage(
           child: AddPostScreen(),
+        ),
+    '/add-post/:type': (routeData) => MaterialPage(
+          child: AddPostTypeScreen(
+            type: routeData.pathParameters['type']!,
+          ),
         ),
   },
 );
