@@ -8,8 +8,8 @@ import 'package:reddit_clone/features/auth/controller/auth_controller.dart';
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
-  void displayDrawer(BuildContext context) {
-    Scaffold.of(context).openDrawer();
+  void displayEndDrawer(BuildContext context) {
+    Scaffold.of(context).openEndDrawer();
   }
 
   @override
@@ -30,7 +30,7 @@ class HomeScreen extends ConsumerWidget {
               )),
           Builder(builder: (context) {
             return IconButton(
-                onPressed: () => displayDrawer(context),
+                onPressed: () => displayEndDrawer(context),
                 icon: CircleAvatar(
                   backgroundImage: NetworkImage(user.profilePic),
                 ));
