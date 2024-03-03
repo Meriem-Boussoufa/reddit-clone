@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reddit_clone/core/common/error_text.dart';
 import 'package:reddit_clone/core/common/loader.dart';
 import 'package:routemaster/routemaster.dart';
+import '../../../core/common/post_card.dart';
 import '../../../models/community.dart';
 import '../../auth/controller/auth_controller.dart';
 import '../controller/community_controller.dart';
@@ -114,7 +115,21 @@ class CommunityScreen extends ConsumerWidget {
                     ),
                   ];
                 },
-                body: const Text('Displaying posts'),
+                body: ref.watch(getCommunityPostsProvider(name)).when(
+                      data: (data) {
+                        return ListView.builder(
+                          itemCount: data.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final post = data[index];
+                            return PostCard(post: post);
+                          },
+                        );
+                      },
+                      error: (error, stackTrace) {
+                        return ErrorText(error: error.toString());
+                      },
+                      loading: () => const Loader(),
+                    ),
               ),
               error: ((error, stackTrace) => ErrorText(
                     error: error.toString(),
