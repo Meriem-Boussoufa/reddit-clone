@@ -94,6 +94,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
 
     return ref.watch(getUserDataProvider(widget.uid)).when(
           data: (user) => Scaffold(
+            // ignore: deprecated_member_use
             backgroundColor: currentTheme.backgroundColor,
             appBar: AppBar(
               title: const Text('Edit Profile'),
@@ -124,7 +125,10 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                     dashPattern: const [10, 4],
                                     strokeCap: StrokeCap.round,
                                     color: currentTheme
-                                        .textTheme.bodyText2!.color!,
+                                        .textTheme
+                                        // ignore: deprecated_member_use
+                                        .bodyText2!
+                                        .color!,
                                     child: Container(
                                       width: double.infinity,
                                       height: 150,

@@ -33,6 +33,7 @@ class Pallete {
       backgroundColor: drawerColor,
     ),
     primaryColor: redColor,
+    // ignore: deprecated_member_use
     backgroundColor:
         drawerColor, // will be used as alternative background color
   );
@@ -51,6 +52,7 @@ class Pallete {
       backgroundColor: whiteColor,
     ),
     primaryColor: redColor,
+    // ignore: deprecated_member_use
     backgroundColor: whiteColor,
   );
 }
