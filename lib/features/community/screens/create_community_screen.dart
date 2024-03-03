@@ -56,7 +56,9 @@ class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
                   ),
                   const SizedBox(height: 30),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      createCommunity();
+                    },
                     style: ElevatedButton.styleFrom(
                         minimumSize: const Size(double.infinity, 50),
                         shape: RoundedRectangleBorder(
