@@ -44,6 +44,12 @@ class PostCard extends ConsumerWidget {
     ref.read(postControllerProvider.notifier).downvote(post);
   }
 
+  void awardPost(WidgetRef ref, String award, BuildContext context) async {
+    ref
+        .read(postControllerProvider.notifier)
+        .awardPost(post: post, award: award, context: context);
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isTypeImage = post.type == 'image';
@@ -310,7 +316,8 @@ class PostCard extends ConsumerWidget {
                                                         user.awards[index];
 
                                                     return GestureDetector(
-                                                      onTap: () {},
+                                                      onTap: () => awardPost(
+                                                          ref, award, context),
                                                       child: Padding(
                                                         padding:
                                                             const EdgeInsets
