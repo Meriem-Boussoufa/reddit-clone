@@ -36,7 +36,7 @@ class AuthRepository {
 
   Stream<User?> get authStateChange => _auth.authStateChanges();
 
-  Future<Either<String, UserModel>> signInWithGoogle() async {
+  Future<Either<String, UserModel>> signInWithGoogle(bool isFromLogin) async {
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
       final googleAuth = await googleUser?.authentication;
@@ -44,9 +44,13 @@ class AuthRepository {
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
-      UserCredential userCredential =
-          await _auth.signInWithCredential(credential);
-      log(userCredential.user!.email.toString());
+      UserCredential userCredential;
+      if (isFromLogin) {
+        userCredential = await _auth.signInWithCredential(credential);
+      } else {
+        userCredential =
+            await _auth.currentUser!.linkWithCredential(credential);
+      }
 
       UserModel userModel;
 

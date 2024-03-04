@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../core/common/error_text.dart';
 import '../../core/common/loader.dart';
 import '../../core/common/post_card.dart';
@@ -42,6 +41,28 @@ class FeedScreen extends ConsumerWidget {
             loading: () => const Loader(),
           );
     }
-    return Text('');
+    return ref.watch(userCommunitiesProvider).when(
+          data: (communities) => ref.watch(guestPostsProvider).when(
+                data: (data) {
+                  return ListView.builder(
+                    itemCount: data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final post = data[index];
+                      return PostCard(post: post);
+                    },
+                  );
+                },
+                error: (error, stackTrace) {
+                  return ErrorText(
+                    error: error.toString(),
+                  );
+                },
+                loading: () => const Loader(),
+              ),
+          error: (error, stackTrace) => ErrorText(
+            error: error.toString(),
+          ),
+          loading: () => const Loader(),
+        );
   }
 }
