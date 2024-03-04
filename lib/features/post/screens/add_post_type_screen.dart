@@ -132,6 +132,7 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
                           radius: const Radius.circular(10),
                           dashPattern: const [10, 4],
                           strokeCap: StrokeCap.round,
+                          // ignore: deprecated_member_use
                           color: currentTheme.textTheme.bodyText2!.color!,
                           child: Container(
                             width: double.infinity,

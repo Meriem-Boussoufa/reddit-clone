@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:any_link_preview/any_link_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +31,7 @@ class PostCard extends ConsumerWidget {
   }
 
   void navigateToComments(BuildContext context) {
+    log("###### We Are going to Comment Screen #######");
     Routemaster.of(context).push('/post/${post.id}/comments');
   }
 
@@ -260,8 +263,9 @@ class PostCard extends ConsumerWidget {
                                 Row(
                                   children: [
                                     IconButton(
-                                      onPressed: () =>
-                                          navigateToComments(context),
+                                      onPressed: () {
+                                        navigateToComments(context);
+                                      },
                                       icon: const Icon(
                                         Icons.comment,
                                       ),

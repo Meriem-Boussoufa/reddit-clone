@@ -22,16 +22,14 @@ class Constants {
   static const IconData down =
       IconData(0xe801, fontFamily: 'MyFlutterApp', fontPackage: null);
 
-  static const awardsPath = 'assets/images/awards';
-
   static const awards = {
-    'awesomeAns': '${Constants.awardsPath}/awesomeanswer.png',
-    'gold': '${Constants.awardsPath}/gold.png',
-    'platinum': '${Constants.awardsPath}/platinum.png',
-    'helpful': '${Constants.awardsPath}/helpful.png',
-    'plusone': '${Constants.awardsPath}/plusone.png',
-    'rocket': '${Constants.awardsPath}/rocket.png',
-    'thankyou': '${Constants.awardsPath}/thankyou.png',
-    'til': '${Constants.awardsPath}/til.png',
+    'awesomeAns': 'assets/images/awards/awesomeanswer.png',
+    'gold': 'assets/images/awards/gold.png',
+    'platinum': 'assets/images/awards/platinum.png',
+    'helpful': 'assets/images/awards/helpful.png',
+    'plusone': 'assets/images/awards/plusone.png',
+    'rocket': 'assets/images/awards/rocket.png',
+    'thankyou': 'assets/images/awards/thankyou.png',
+    'til': 'assets/images/awards/til.png',
   };
 }
