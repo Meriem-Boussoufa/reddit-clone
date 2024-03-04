@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
+import '../../../core/enums/enums.dart';
 import '../../../core/providers/storage_repository_provider.dart';
 import '../../../core/utils.dart';
 import '../../../models/comment.dart';
@@ -77,6 +78,9 @@ class PostController extends StateNotifier<bool> {
       description: description,
     );
     final res = await _postRepository.addPost(post);
+    _ref
+        .read(userProfileControllerProvider.notifier)
+        .updateUserKarma(UserKarma.textPost);
     state = false;
     res.fold((l) => showSnackBar(context, l.message), (r) {
       showSnackBar(context, 'Posted successfully!');
@@ -110,6 +114,9 @@ class PostController extends StateNotifier<bool> {
       link: link,
     );
     final res = await _postRepository.addPost(post);
+    _ref
+        .read(userProfileControllerProvider.notifier)
+        .updateUserKarma(UserKarma.linkPost);
     state = false;
     res.fold((l) => showSnackBar(context, l.message), (r) {
       showSnackBar(context, 'Posted successfully!');
@@ -152,6 +159,12 @@ class PostController extends StateNotifier<bool> {
       );
 
       final res = await _postRepository.addPost(post);
+      _ref
+          .read(userProfileControllerProvider.notifier)
+          .updateUserKarma(UserKarma.imagePost);
+      _ref
+          .read(userProfileControllerProvider.notifier)
+          .updateUserKarma(UserKarma.textPost);
       state = false;
       res.fold((l) => showSnackBar(context, l.message), (r) {
         showSnackBar(context, 'Posted successfully!');
@@ -169,6 +182,9 @@ class PostController extends StateNotifier<bool> {
 
   void deletePost(Post post, BuildContext context) async {
     final res = await _postRepository.deletePost(post);
+    _ref
+        .read(userProfileControllerProvider.notifier)
+        .updateUserKarma(UserKarma.textPost);
 
     res.fold((l) => null,
         (r) => showSnackBar(context, 'Post Deleted successfully!'));
@@ -204,6 +220,9 @@ class PostController extends StateNotifier<bool> {
       profilePic: user.profilePic,
     );
     final res = await _postRepository.addComment(comment);
+    _ref
+        .read(userProfileControllerProvider.notifier)
+        .updateUserKarma(UserKarma.comment);
     _ref.read(userProfileControllerProvider.notifier);
     res.fold((l) => showSnackBar(context, l.message), (r) => null);
   }
